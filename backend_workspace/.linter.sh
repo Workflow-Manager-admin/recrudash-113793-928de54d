@@ -1,9 +1,22 @@
 #!/bin/bash
-cd /home/kavia/workspace/code-generation/recrudash-113793-928de54d/backend_workspace/backend
-source venv/bin/activate
-flake8 .
-LINT_EXIT_CODE=$?
-if [ $LINT_EXIT_CODE -ne 0 ]; then
-  exit 1
+set -e
+
+# Run from the directory this script is in (backend_workspace)
+cd "$(dirname "$0")"
+
+# Create venv in backend_workspace if it does not exist
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
 fi
 
+source venv/bin/activate
+
+# Install requirements (requirements.txt is in backend/)
+pip install --upgrade pip
+pip install -r backend/requirements.txt
+pip install flake8
+
+# Run flake8 on backend/src/
+flake8 backend/src/
+
+deactivate
