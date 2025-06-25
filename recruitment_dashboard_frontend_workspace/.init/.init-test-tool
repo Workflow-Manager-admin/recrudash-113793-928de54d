@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/recrudash-113793-928de54d/recruitment_dashboard_frontend_workspace/recruitment_dashboard_frontend"
+}
